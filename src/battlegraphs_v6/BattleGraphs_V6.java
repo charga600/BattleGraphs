@@ -3,9 +3,10 @@ package battlegraphs_v6;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -15,6 +16,13 @@ public class BattleGraphs_V6
         
     JPanel cards;
     
+    public static final String mainMenu = "Difficulty Selection";
+    public static final String diffSelec = "Difficulty Selection";
+    public static final String placement = "Difficulty Selection";
+    public static final String help = "Difficulty Selection";
+    
+    public int playerNumbers = 1;  //1 = singleplayer, 2 = two player
+    
     public void addComponentToPane (Container pane)
     {
         JPanel MainMenuCard = new MainMenu_V6();
@@ -23,18 +31,49 @@ public class BattleGraphs_V6
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1,7));
         buttonPanel.setBounds(25, 420, 25, 420);
-        buttonPanel.add(new JButton("Single Player"));
-        buttonPanel.add(new JButton("Two Player"));
-        buttonPanel.add(new JButton("Easy"));
-        buttonPanel.add(new JButton("Moderate"));
-        buttonPanel.add(new JButton("Hard"));
-        buttonPanel.add(new JButton("Confirm"));
-        buttonPanel.add(new JButton("Help"));
+        
+        JButton singlePlayer = new JButton("SinglePlayer");
+        JButton twoPlayer = new JButton("Two Player");
+        JButton easy = new JButton("Easy");
+        JButton moderate = new JButton("Moderate");
+        JButton hard = new JButton("Hard");
+        JButton confirm = new JButton("Confirm");
+        JButton help = new JButton("Help");
+        
+        singlePlayer.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae) 
+            {
+                cards.removeAll();
+                cards.add(DifficultySelectorCard, diffSelec);
+                playerNumbers = 1;
+                cards.repaint();
+                cards.revalidate();
+            }
+        });
+        singlePlayer.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent ae) 
+            {
+                cards.removeAll();
+                cards.add(DifficultySelectorCard, diffSelec);
+                playerNumbers = 2;
+                cards.repaint();
+                cards.revalidate();
+            }
+        });
+        
+        buttonPanel.add(singlePlayer);
+        buttonPanel.add(twoPlayer);
+        buttonPanel.add(easy);
+        buttonPanel.add(moderate);
+        buttonPanel.add(hard);
+        buttonPanel.add(confirm);
+        buttonPanel.add(help);
         
         cards = new JPanel(new CardLayout());
         
-        cards.add(MainMenuCard, "MainMenuCard");
-        cards.add(DifficultySelectorCard, "DifficultyCard");
+        cards.add(MainMenuCard, mainMenu);
         
         pane.add(buttonPanel, BorderLayout.PAGE_START);
         pane.add(cards, BorderLayout.CENTER);
