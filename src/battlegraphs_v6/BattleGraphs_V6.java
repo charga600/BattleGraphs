@@ -9,7 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.plaf.synth.SynthLookAndFeel;
 
 public class BattleGraphs_V6 
 {
@@ -22,6 +26,9 @@ public class BattleGraphs_V6
     public static final String help = "Difficulty Selection";
     
     public int playerNumbers = 1;  //1 = singleplayer, 2 = two player
+    
+    public boolean sPClicked = false; //false for not clicked, true for clicked (cannot be clicked again)
+    public boolean tPClicked = false; //false for not clicked, true for clicked (cannot be clicked again)
     
     public void addComponentToPane (Container pane)
     {
@@ -42,24 +49,51 @@ public class BattleGraphs_V6
         
         singlePlayer.addActionListener(new ActionListener()
         {
+            
             public void actionPerformed(ActionEvent ae) 
             {
-                cards.removeAll();
-                cards.add(DifficultySelectorCard, diffSelec);
-                playerNumbers = 1;
-                cards.repaint();
-                cards.revalidate();
+                if (sPClicked == false)
+                {
+                    cards.removeAll();
+                    cards.add(DifficultySelectorCard, diffSelec);
+                    playerNumbers = 1;
+                    cards.repaint();
+                    cards.revalidate();
+                    sPClicked = true;
+                    tPClicked = true;
+                }
+                else if (sPClicked == true)
+                {
+                    JOptionPane.showMessageDialog(pane,"You have already completed this step");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(pane,"Fatal Error");
+                }
             }
         });
-        singlePlayer.addActionListener(new ActionListener()
+        twoPlayer.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent ae) 
             {
-                cards.removeAll();
-                cards.add(DifficultySelectorCard, diffSelec);
-                playerNumbers = 2;
-                cards.repaint();
-                cards.revalidate();
+                if (tPClicked == false)
+                {
+                    cards.removeAll();
+                    cards.add(DifficultySelectorCard, diffSelec);
+                    playerNumbers = 2;
+                    cards.repaint();
+                    cards.revalidate();
+                    sPClicked = true;
+                    tPClicked = true;
+                }
+                else if (tPClicked == true)
+                {
+                    JOptionPane.showMessageDialog(pane,"You have already completed this step");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(pane,"Fatal Error");
+                }
             }
         });
         
@@ -90,6 +124,8 @@ public class BattleGraphs_V6
         JFrame frame = new JFrame("BattleGraphs");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        // set look and feel
+        
         frame.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         frame.setPreferredSize(new java.awt.Dimension(800, 455));
         frame.setResizable(false);
@@ -110,5 +146,13 @@ public class BattleGraphs_V6
                 createAndShowGUI();
             }
         });
+    }
+    
+    private static void initLookAndFeel() throws UnsupportedLookAndFeelException 
+    {
+        SynthLookAndFeel lookAndFeel = new SynthLookAndFeel();
+       
+        lookAndFeel.load(SynthDialog.class.getResourceAsStream("synthDemo.xml"), SynthDialog.class);
+        UIManager.setLookAndFeel(lookAndFeel);
     }
 }
