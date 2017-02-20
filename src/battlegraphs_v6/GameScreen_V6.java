@@ -13,6 +13,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int DDIcons = 2;
     
     // move main method below swing GUI variable declaration, custom setText and default setText are clashing
+    // also main needs to be a static to be used an an entry point, so change that, and good luck with it too
 
     boolean isPlaceValid = false;
     
