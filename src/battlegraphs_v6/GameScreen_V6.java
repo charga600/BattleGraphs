@@ -21,21 +21,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
     {
         initComponents();
     }
-
-    public void main (String[] args)
-    {
-        while (gameStage < 9)
-        {
-            if (gameStage == 1)
-            {
-                firstLine.setText("Time to place your Aircraft Carrier");
-                secondLine.setText("The Carrier is a 5 tile long ship");
-                thirdLine.setText("Please enter the coordinates first and last tile");
-                fourthLine.setText("Type the letter of the row (Y axis) in upper case, followed by the coloumn number (X axis)");
-
-            }
-        }
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -175,6 +160,12 @@ public class GameScreen_V6 extends javax.swing.JPanel
         secondLine = new javax.swing.JLabel();
         fourthLine = new javax.swing.JLabel();
         thirdLine = new javax.swing.JLabel();
+        fifthLine = new javax.swing.JLabel();
+        sixthLine = new javax.swing.JLabel();
+        seventhLine = new javax.swing.JLabel();
+        eigthLine = new javax.swing.JLabel();
+        ninthLine = new javax.swing.JLabel();
+        tenthLine = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(10, 44, 77));
         setAlignmentX(0.0F);
@@ -1719,21 +1710,21 @@ public class GameScreen_V6 extends javax.swing.JPanel
         });
 
         xCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        xCordLabel.setText("X Coordinate -");
+        xCordLabel.setText("First Coordinate - ");
         xCordLabel.setToolTipText("");
 
         yCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        yCordLabel.setText("Y Coordinate -");
+        yCordLabel.setText("Second Coordinate - ");
         yCordLabel.setToolTipText("");
 
         gradient.setForeground(new java.awt.Color(214, 220, 32));
-        gradient.setText("Gradient -");
+        gradient.setText("-");
         gradient.setToolTipText("");
 
         firstLine.setForeground(new java.awt.Color(214, 220, 32));
-        firstLine.setText("firstLine");
+        firstLine.setText("Time to place your Aircraft Carrier");
 
-        confirmButton.setBackground(new java.awt.Color(10, 44, 77));
+        confirmButton.setBackground(new java.awt.Color(255, 255, 255));
         confirmButton.setForeground(new java.awt.Color(10, 44, 77));
         confirmButton.setText("Confirm");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1743,13 +1734,31 @@ public class GameScreen_V6 extends javax.swing.JPanel
         });
 
         secondLine.setForeground(new java.awt.Color(214, 220, 32));
-        secondLine.setText("secondLine");
+        secondLine.setText("The Carrier is 5 tiles long");
 
         fourthLine.setForeground(new java.awt.Color(214, 220, 32));
-        fourthLine.setText("fourthLine");
+        fourthLine.setText("Please enter the smallest coordinate first");
 
         thirdLine.setForeground(new java.awt.Color(214, 220, 32));
-        thirdLine.setText("thirdLine");
+        thirdLine.setText("Select your start and end points for the ship");
+
+        fifthLine.setForeground(new java.awt.Color(214, 220, 32));
+        fifthLine.setText("for example, if you were to pick A1 and A5");
+
+        sixthLine.setForeground(new java.awt.Color(214, 220, 32));
+        sixthLine.setText("you would enter A1 then A5, as A5 is technically");
+
+        seventhLine.setForeground(new java.awt.Color(214, 220, 32));
+        seventhLine.setText("larger if your coordinates were A1 and E1,");
+
+        eigthLine.setForeground(new java.awt.Color(214, 220, 32));
+        eigthLine.setText("A1 would come first again");
+
+        ninthLine.setForeground(new java.awt.Color(214, 220, 32));
+        ninthLine.setText("Watch your placement");
+
+        tenthLine.setForeground(new java.awt.Color(214, 220, 32));
+        tenthLine.setText("as overlapping ships will cause issues");
 
         javax.swing.GroupLayout infoDisplayAreaLayout = new javax.swing.GroupLayout(infoDisplayArea);
         infoDisplayArea.setLayout(infoDisplayAreaLayout);
@@ -1759,7 +1768,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoDisplayAreaLayout.createSequentialGroup()
-                        .addGap(0, 115, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(xCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(yCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1774,7 +1783,16 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     .addComponent(firstLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(secondLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(thirdLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fourthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fourthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(infoDisplayAreaLayout.createSequentialGroup()
+                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fifthLine)
+                            .addComponent(sixthLine)
+                            .addComponent(seventhLine)
+                            .addComponent(eigthLine)
+                            .addComponent(ninthLine)
+                            .addComponent(tenthLine))
+                        .addGap(0, 71, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         infoDisplayAreaLayout.setVerticalGroup(
@@ -1788,6 +1806,18 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addComponent(thirdLine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fourthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fifthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sixthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(seventhLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eigthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ninthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tenthLine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoDisplayAreaLayout.createSequentialGroup()
@@ -1981,7 +2011,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel dLine;
     private javax.swing.JLabel eLine;
+    private javax.swing.JLabel eigthLine;
     private javax.swing.JLabel fLine;
+    private javax.swing.JLabel fifthLine;
     private javax.swing.JLabel firstLine;
     private javax.swing.JLabel fourthLine;
     private javax.swing.JLabel gLine;
@@ -1993,7 +2025,11 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private javax.swing.JLabel iLine;
     private javax.swing.JPanel infoDisplayArea;
     private javax.swing.JLabel jLine;
+    private javax.swing.JLabel ninthLine;
     private javax.swing.JLabel secondLine;
+    private javax.swing.JLabel seventhLine;
+    private javax.swing.JLabel sixthLine;
+    private javax.swing.JLabel tenthLine;
     private javax.swing.JLabel thirdLine;
     private javax.swing.JTextField xCordField;
     private javax.swing.JLabel xCordLabel;
@@ -2002,6 +2038,39 @@ public class GameScreen_V6 extends javax.swing.JPanel
     // End of variables declaration//GEN-END:variables
 
     // </editor-fold>
+    
+    public void gameStart()
+    {
+        while (gameStage < 9)
+        {
+            if (gameStage == 2)
+            {
+                firstLine.setText("Now to place your Battleship");
+                secondLine.setText("The Battlehsip is 4 tiles long");
+                thirdLine.setText("");
+                fourthLine.setText("");
+                fifthLine.setText("");
+                sixthLine.setText("");
+                seventhLine.setText("");
+                eigthLine.setText("");
+            }
+            if (gameStage == 3)
+            {
+                firstLine.setText("Now to place your Cruiser");
+                secondLine.setText("The Battlehsip is 3 tiles long");
+            }
+            if (gameStage == 4)
+            {
+                firstLine.setText("Now to place your Submarine");
+                secondLine.setText("The Battlehsip is 3 tiles long");
+            }
+            if (gameStage == 5)
+            {
+                firstLine.setText("Now to place your Destroyer");
+                secondLine.setText("The Battlehsip is 2 tiles long");
+            }
+        }
+    }
     
     public boolean validPlacement(int stage, String startCord, String endCord)
     {
@@ -2340,7 +2409,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 break;
             case "J10":J10.setIcon(new javax.swing.ImageIcon(getClass().getResource(iconIdentify())));
                 break;
-            // </editosr-fold>
+            // </editor-fold>
         }
     }
     
@@ -2574,7 +2643,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
             break;
                 
         }
-        
         
         return iconIdentity;
     }

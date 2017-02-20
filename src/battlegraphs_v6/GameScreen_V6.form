@@ -3337,7 +3337,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="115" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="xCordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="yCordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -3356,6 +3356,17 @@
                       <Component id="secondLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="thirdLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="fourthLine" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="fifthLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="sixthLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="seventhLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="eigthLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ninthLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="tenthLine" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="71" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -3372,6 +3383,18 @@
                   <Component id="thirdLine" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="fourthLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="fifthLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="sixthLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="seventhLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="eigthLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="ninthLine" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="tenthLine" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -3412,7 +3435,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="X Coordinate -"/>
+            <Property name="text" type="java.lang.String" value="First Coordinate - "/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -3421,7 +3444,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Y Coordinate -"/>
+            <Property name="text" type="java.lang.String" value="Second Coordinate - "/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -3430,7 +3453,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Gradient -"/>
+            <Property name="text" type="java.lang.String" value="-"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -3439,13 +3462,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="firstLine"/>
+            <Property name="text" type="java.lang.String" value="Time to place your Aircraft Carrier"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="confirmButton">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="4d" green="2c" red="a" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="4d" green="2c" red="a" type="rgb"/>
@@ -3461,7 +3484,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="secondLine"/>
+            <Property name="text" type="java.lang.String" value="The Carrier is 5 tiles long"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="fourthLine">
@@ -3469,7 +3492,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="fourthLine"/>
+            <Property name="text" type="java.lang.String" value="Please enter the smallest coordinate first"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="thirdLine">
@@ -3477,7 +3500,55 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="thirdLine"/>
+            <Property name="text" type="java.lang.String" value="Select your start and end points for the ship"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="fifthLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="for example, if you were to pick A1 and A5"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="sixthLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="you would enter A1 then A5, as A5 is technically"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="seventhLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="larger if your coordinates were A1 and E1,"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="eigthLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="A1 would come first again"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ninthLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Watch your placement"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="tenthLine">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="20" green="dc" red="d6" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="as overlapping ships will cause issues"/>
           </Properties>
         </Component>
       </SubComponents>
