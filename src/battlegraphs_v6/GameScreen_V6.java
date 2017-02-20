@@ -12,7 +12,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int SBIcons = 3;
     int DDIcons = 2;
     
-    
+    // move main method below swing GUI variable declaration, custom setText and default setText are clashing
+
     boolean isPlaceValid = false;
     
     public GameScreen_V6() 
