@@ -1829,40 +1829,29 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
         String xCordText = xCordField.getText();
         String yCordText = yCordField.getText();
-        String midCord = "";
         isPlaceValid = false;
         isPlaceValid = validPlacement(gameStage, xCordText, yCordText);
         
-        int startXCord = xCordText.charAt(1);
-        int endXCord = yCordText.charAt(1);
+        String xCordValue = xCordText.substring(1);
+        String yCordValue = yCordText.substring(1);
+        
+        int startXCord = Integer.parseInt(xCordValue);
+        int endXCord = Integer.parseInt(yCordValue);
         
         switch (gameStage)
         {
-            case 1: masterRange = 3;
+            case 1: masterRange = 4;
                 break;
-            case 2: masterRange = 2;
+            case 2: masterRange = 3;
                 break;
-            case 3: masterRange = 1;
+            case 3: masterRange = 2;
                 break;
-            case 4: masterRange = 1;
+            case 4: masterRange = 2;
                 break;
-            case 5: masterRange = 0;
+            case 5: masterRange = 1;
                 break;
         }
-        
-        if(startXCord > endXCord)
-        {
-            SXGreaterEX = 1;
-        }
-        else if (endXCord > startXCord)
-        {
-            SXGreaterEX = 2;
-        }
-        else
-        {
-            SXGreaterEX = 0;
-        }
-        
+ 
         int X1subX2 = startXCord - endXCord;
         int X2subX1 = endXCord - startXCord;
 
@@ -1879,6 +1868,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
         int intStartYCord = 0;
         char endYCord = yCordText.charAt(0);
         int intEndYCord = 0;
+        
+        // <editor-fold>
         
         switch (startYCord) {
             case 'A':
@@ -1946,35 +1937,35 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 break;
         }
         
+        // </editor-fold>
+        
+        int i = 0;
+        int nextXCord = startXCord;
+        
+        char midYCord = '_';
+        
+        String midCord = "";   
+        
         if(gameStage == 1)
         {
             if (orientation == 2)
             {
-                midCord = xCordText;
-                int i = 5;
-                while (i > -1)
+                i = 3;
+                identifyGrid(xCordText);
+  
+                while (i > 0)
                 {
+                    nextXCord++;
+                    midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
                     identifyGrid(midCord);
-                    
-                    int nextXCord = 0;
-                    int nextYCord = 0;
-                    
-                    char midYCord = '_';
-                    
-                    if (SXGreaterEX == 1)
-                    {
-                        nextXCord = startXCord - 1;
-                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                    }
-                    else if (SXGreaterEX == 2)
-                    {
-                        nextXCord = endXCord - 1;
-                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                    } 
+                    i--;
                 }
+                
+                identifyGrid(yCordText);
             }
             else if (orientation == 1)
             {
+                // <editor-fold>
 //                {
 //                    nextYCord = intEndYCord - 1;
 //
@@ -2013,6 +2004,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
 //
 //                    midCord = midYCord + String.valueOf(nextXCord);
 //                } 
+                // </editor-fold>
             }
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
