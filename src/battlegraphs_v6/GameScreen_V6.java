@@ -20,21 +20,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
     {
         initComponents();
     }
-
-    public void main (String[] args)
-    {
-        while (gameStage < 9)
-        {
-            if (gameStage == 1)
-            {
-                firstLine.setText("Time to place your Aircraft Carrier");
-                secondLine.setText("The Carrier is a 5 tile long ship");
-                thirdLine.setText("Please enter the coordinates first and last tile");
-                fourthLine.setText("Type the letter of the row (Y axis) in upper case, followed by the coloumn number (X axis)");
-
-            }
-        }
-    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -174,6 +159,11 @@ public class GameScreen_V6 extends javax.swing.JPanel
         secondLine = new javax.swing.JLabel();
         fourthLine = new javax.swing.JLabel();
         thirdLine = new javax.swing.JLabel();
+        fifthLine = new javax.swing.JLabel();
+        sixthLine = new javax.swing.JLabel();
+        seventhLine = new javax.swing.JLabel();
+        eigthLine = new javax.swing.JLabel();
+        ninthLine = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(10, 44, 77));
         setAlignmentX(0.0F);
@@ -1718,21 +1708,21 @@ public class GameScreen_V6 extends javax.swing.JPanel
         });
 
         xCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        xCordLabel.setText("X Coordinate -");
+        xCordLabel.setText("First Coordinate - ");
         xCordLabel.setToolTipText("");
 
         yCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        yCordLabel.setText("Y Coordinate -");
+        yCordLabel.setText("Second Coordinate - ");
         yCordLabel.setToolTipText("");
 
         gradient.setForeground(new java.awt.Color(214, 220, 32));
-        gradient.setText("Gradient -");
+        gradient.setText(" -");
         gradient.setToolTipText("");
 
         firstLine.setForeground(new java.awt.Color(214, 220, 32));
-        firstLine.setText("firstLine");
+        firstLine.setText("Before we begin, you need to deploy your ships");
 
-        confirmButton.setBackground(new java.awt.Color(10, 44, 77));
+        confirmButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         confirmButton.setForeground(new java.awt.Color(10, 44, 77));
         confirmButton.setText("Confirm");
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1742,13 +1732,28 @@ public class GameScreen_V6 extends javax.swing.JPanel
         });
 
         secondLine.setForeground(new java.awt.Color(214, 220, 32));
-        secondLine.setText("secondLine");
+        secondLine.setText("First the Carrier (CV)");
 
         fourthLine.setForeground(new java.awt.Color(214, 220, 32));
-        fourthLine.setText("fourthLine");
+        fourthLine.setText("Pick two squares that have a legnth of 5");
 
         thirdLine.setForeground(new java.awt.Color(214, 220, 32));
-        thirdLine.setText("thirdLine");
+        thirdLine.setText("This is a 5 tile long ship");
+
+        fifthLine.setForeground(new java.awt.Color(214, 220, 32));
+        fifthLine.setText("They can be horizontal or vertical, but not diagonal");
+
+        sixthLine.setForeground(new java.awt.Color(214, 220, 32));
+        sixthLine.setText("Please enter the coordinate with the smallest number");
+
+        seventhLine.setForeground(new java.awt.Color(214, 220, 32));
+        seventhLine.setText("or highest order letter first, e.g.");
+
+        eigthLine.setForeground(new java.awt.Color(214, 220, 32));
+        eigthLine.setText("A1 before A5 or A2 before E2");
+
+        ninthLine.setForeground(new java.awt.Color(214, 220, 32));
+        ninthLine.setText("Once you have done this, hit confirm");
 
         javax.swing.GroupLayout infoDisplayAreaLayout = new javax.swing.GroupLayout(infoDisplayArea);
         infoDisplayArea.setLayout(infoDisplayAreaLayout);
@@ -1758,7 +1763,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoDisplayAreaLayout.createSequentialGroup()
-                        .addGap(0, 115, Short.MAX_VALUE)
+                        .addGap(0, 75, Short.MAX_VALUE)
                         .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(xCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(yCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -1773,7 +1778,12 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     .addComponent(firstLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(secondLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(thirdLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(fourthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fourthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(fifthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sixthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(seventhLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eigthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ninthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         infoDisplayAreaLayout.setVerticalGroup(
@@ -1787,6 +1797,16 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addComponent(thirdLine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fourthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fifthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sixthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(seventhLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(eigthLine)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ninthLine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoDisplayAreaLayout.createSequentialGroup()
@@ -1834,9 +1854,21 @@ public class GameScreen_V6 extends javax.swing.JPanel
         
         String xCordValue = xCordText.substring(1);
         String yCordValue = yCordText.substring(1);
+        String xTenTest = xCordText.substring(2);
+        String yTenTest = yCordText.substring(2);
         
         int startXCord = Integer.parseInt(xCordValue);
         int endXCord = Integer.parseInt(yCordValue);
+        
+        if (xTenTest != null)
+        {
+            xCordValue = "10";
+        }
+        
+        if (yTenTest != null)
+        {
+            yCordValue = "10";
+        }
         
         switch (gameStage)
         {
@@ -1864,151 +1896,171 @@ public class GameScreen_V6 extends javax.swing.JPanel
             orientation = 1;
         }
         
-        char startYCord = xCordText.charAt(0);
-        int intStartYCord = 0;
-        char endYCord = yCordText.charAt(0);
-        int intEndYCord = 0;
-        
-        // <editor-fold>
-        
-        switch (startYCord) {
-            case 'A':
-                intStartYCord = 10;
-                break;
-            case 'B':
-                intStartYCord = 9;
-                break;
-            case 'C':
-                intStartYCord = 8;
-                break;
-            case 'D':
-                intStartYCord = 7;
-                break;
-            case 'E':
-                intStartYCord = 6;
-                break;
-            case 'F':
-                intStartYCord = 5;
-                break;
-            case 'G':
-                intStartYCord = 4;
-                break;
-            case 'H':
-                intStartYCord = 3;
-                break;
-            case 'I':
-                intStartYCord = 2;
-                break;
-            case 'J':
-                intStartYCord = 1;
-                break;
-        }
-        
-        switch (endYCord) {
-            case 'A':
-                intEndYCord = 10;
-                break;
-            case 'B':
-                intEndYCord = 9;
-                break;
-            case 'C':
-                intEndYCord = 8;
-                break;
-            case 'D':
-                intEndYCord = 7;
-                break;
-            case 'E':
-                intEndYCord = 6;
-                break;
-            case 'F':
-                intEndYCord = 5;
-                break;
-            case 'G':
-                intEndYCord = 4;
-                break;
-            case 'H':
-                intEndYCord = 3;
-                break;
-            case 'I':
-                intEndYCord = 2;
-                break;
-            case 'J':
-                intEndYCord = 1;
-                break;
-        }
-        
-        // </editor-fold>
-        
         int i = 0;
         int nextXCord = startXCord;
         
-        char midYCord = '_';
+        char midXCord = xCordText.charAt(0);
         
         String midCord = "";   
         
-        if(gameStage == 1)
+        switch (gameStage) 
         {
-            if (orientation == 2)
-            {
+            case 1:
                 i = 3;
-                identifyGrid(xCordText);
-  
-                while (i > 0)
+                if (orientation == 2)
                 {
-                    nextXCord++;
-                    midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                    identifyGrid(midCord);
-                    i--;
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord++;
+                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
                 }
-                
-                identifyGrid(yCordText);
-            }
-            else if (orientation == 1)
-            {
-                // <editor-fold>
-//                {
-//                    nextYCord = intEndYCord - 1;
-//
-//                    switch (intEndYCord) {
-//                        case 10:
-//                            midYCord = 'A';
-//                            break;
-//                        case 9:
-//                            midYCord = 'B';
-//                            break;
-//                        case 8:
-//                            midYCord = 'C';
-//                            break;
-//                        case 7:
-//                            midYCord = 'D';
-//                            break;
-//                        case 6:
-//                            midYCord = 'E';
-//                            break;
-//                        case 5:
-//                            midYCord = 'F';
-//                            break;
-//                        case 4:
-//                            midYCord = 'G';
-//                            break;
-//                        case 3:
-//                            midYCord = 'H';
-//                            break;
-//                        case 2:
-//                            midYCord = 'I';
-//                            break;
-//                        case 1:
-//                            midYCord = 'J';
-//                            break;  
-//                    }
-//
-//                    midCord = midYCord + String.valueOf(nextXCord);
-//                } 
-                // </editor-fold>
-            }
+                else if (orientation == 1)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord = yCordToInt(midXCord);
+                        nextXCord--;
+                        midXCord = yCordToChar(nextXCord);
+                        midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                clearAndSetText();
+                break;
+            case 2:
+                i = 2;
+                if (orientation == 2)
+                {
+                    
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord++;
+                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                else if (orientation == 1)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord = yCordToInt(midXCord);
+                        nextXCord--;
+                        midXCord = yCordToChar(nextXCord);
+                        midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                clearAndSetText();
+                break;
+            case 3:
+                i = 1;
+                if (orientation == 2)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord++;
+                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                else if (orientation == 1)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord = yCordToInt(midXCord);
+                        nextXCord--;
+                        midXCord = yCordToChar(nextXCord);
+                        midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                clearAndSetText();
+                break;
+            case 4:
+                i = 1;
+                if (orientation == 2)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord++;
+                        midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                else if (orientation == 1)
+                {
+                    identifyGrid(xCordText);
+                    
+                    while (i > 0)
+                    {
+                        nextXCord = yCordToInt(midXCord);
+                        nextXCord--;
+                        midXCord = yCordToChar(nextXCord);
+                        midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                        identifyGrid(midCord);
+                        i--;
+                    }
+                    
+                    identifyGrid(yCordText);
+                }
+                clearAndSetText();
+                break;
+            case 5:
+                if (orientation == 2)
+                {
+                    identifyGrid(xCordText);
+                    identifyGrid(yCordText);
+                    
+                }
+                else if (orientation == 1)
+                {
+                    identifyGrid(xCordText);
+                    identifyGrid(yCordText);
+                }
+                clearAndSetText();
+                break;
         }
+        
     }//GEN-LAST:event_confirmButtonActionPerformed
-    // <editor-fold>
+    
+// <editor-fold>
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel A1;
@@ -2127,7 +2179,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private javax.swing.JButton confirmButton;
     private javax.swing.JLabel dLine;
     private javax.swing.JLabel eLine;
+    private javax.swing.JLabel eigthLine;
     private javax.swing.JLabel fLine;
+    private javax.swing.JLabel fifthLine;
     private javax.swing.JLabel firstLine;
     private javax.swing.JLabel fourthLine;
     private javax.swing.JLabel gLine;
@@ -2139,7 +2193,10 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private javax.swing.JLabel iLine;
     private javax.swing.JPanel infoDisplayArea;
     private javax.swing.JLabel jLine;
+    private javax.swing.JLabel ninthLine;
     private javax.swing.JLabel secondLine;
+    private javax.swing.JLabel seventhLine;
+    private javax.swing.JLabel sixthLine;
     private javax.swing.JLabel thirdLine;
     private javax.swing.JTextField xCordField;
     private javax.swing.JLabel xCordLabel;
@@ -2723,5 +2780,150 @@ public class GameScreen_V6 extends javax.swing.JPanel
         
         
         return iconIdentity;
+    }
+    
+    public int yCordToInt(char yCharCord)
+    {
+        int yIntCord = 0;
+        
+        switch (yCharCord)
+        {
+            case 'A':
+                yIntCord = 10;
+                break;
+            case 'B':
+                yIntCord = 9;
+                break;
+            case 'C':
+                yIntCord = 8;
+                break;
+            case 'D':
+                yIntCord = 7;
+                break;
+            case 'E':
+                yIntCord = 6;
+                break;
+            case 'F':
+                yIntCord = 5;
+                break;
+            case 'G':
+                yIntCord = 4;
+                break;
+            case 'H':
+                yIntCord = 3;
+                break;
+            case 'I':
+                yIntCord = 2;
+                break;
+            case 'J':
+                yIntCord = 1;
+                break;
+        }
+        
+        return yIntCord;
+    }
+    
+    public char yCordToChar(int yIntCord)
+ 
+    {
+        char yCharCord = '-';
+        
+        switch (yIntCord)
+        {
+            case 10:
+                yCharCord = 'A';
+                break;
+            case 9:
+                yCharCord = 'B';
+                break;
+            case 8:
+                yCharCord = 'C';
+                break;
+            case 7:
+                yCharCord = 'D';
+                break;
+            case 6:
+                yCharCord = 'E';
+                break;
+            case 5:
+                yCharCord = 'F';
+                break;
+            case 4:
+                yCharCord = 'G';
+                break;
+            case 3:
+                yCharCord = 'H';
+                break;
+            case 2:
+                yCharCord = 'I';
+                break;
+            case 1:
+                yCharCord = 'J';
+                break;
+        }
+        
+        return yCharCord;
+    }
+    public void clearAndSetText()
+    {
+        xCordField.setText("");
+        yCordField.setText("");
+        
+        if (gameStage == 1)
+        {
+            gameStage++;
+        }
+        
+        switch(gameStage)
+        {
+            case 2:
+                firstLine.setText("Good!");
+                secondLine.setText("Now to place your Battleship");
+                thirdLine.setText("This is a 4 tile long ship");
+                fourthLine.setText("The same rules apply for cord picks");
+                fifthLine.setText("Take care to ensure that your picks");
+                sixthLine.setText("will not overlap with any other ship");
+                seventhLine.setText("");
+                eigthLine.setText("");
+                ninthLine.setText("");
+                gameStage++;
+                break;
+            case 3:
+                firstLine.setText("Good!");
+                secondLine.setText("Now to place your Cruiser");
+                thirdLine.setText("This is a 3 tile long ship");
+                fourthLine.setText("The same rules apply for cord picks");
+                fifthLine.setText("Take care to ensure that your picks");
+                sixthLine.setText("do will not overlap with any other ship");
+                gameStage++;
+                break;
+            case 4:
+                firstLine.setText("Good!");
+                secondLine.setText("Now to place your Submarine");
+                thirdLine.setText("This is a 3 tile long ship");
+                fourthLine.setText("The same rules apply for cord picks");
+                fifthLine.setText("Take care to ensure that your picks");
+                sixthLine.setText("do will not overlap with any other ship");
+                gameStage++;
+                break;
+            case 5:
+                firstLine.setText("Good!");
+                secondLine.setText("Now to place your Destroyer");
+                thirdLine.setText("This is a 2 tile long ship");
+                fourthLine.setText("The same rules apply for cord picks");
+                fifthLine.setText("Take care to ensure that your picks");
+                sixthLine.setText("do will not overlap with any other ship");
+                gameStage++;
+                break;
+            case 6:
+                firstLine.setText("Well...");
+                secondLine.setText("This is as far as I've gotten");
+                thirdLine.setText("Errmm...");
+                fourthLine.setText("*runs off*");
+                fifthLine.setText("");
+                sixthLine.setText("");
+                break;
+                
+        }
     }
 }
