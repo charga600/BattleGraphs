@@ -1855,6 +1855,233 @@ public class GameScreen_V6 extends javax.swing.JPanel
 
         if (gameStage < 6)
         {
+            String xCordText = xCordField.getText();
+            String yCordText = yCordField.getText();
+            String xCordValue = xCordText.substring(1);
+            String yCordValue = yCordText.substring(1);
+            String xTenTest = xCordText.substring(2);
+            String yTenTest = yCordText.substring(2);
+
+            int startXCord = Integer.parseInt(xCordValue);
+            int endXCord = Integer.parseInt(yCordValue);
+
+            if (xTenTest != null)
+            {
+                xCordValue = "10";
+            }
+
+            if (yTenTest != null)
+            {
+                yCordValue = "10";
+            }
+
+            switch (gameStage)
+            {
+                case 1: masterRange = 4;
+                    break;
+                case 2: masterRange = 3;
+                    break;
+                case 3: masterRange = 2;
+                    break;
+                case 4: masterRange = 2;
+                    break;
+                case 5: masterRange = 1;
+                    break;
+            }
+
+            int X1subX2 = startXCord - endXCord;
+            int X2subX1 = endXCord - startXCord;
+
+            if(X1subX2 == masterRange || X2subX1 == masterRange)
+            {
+                orientation = 2;
+            }
+            else
+            {
+                orientation = 1;
+            }
+
+            int i = 0;
+            int nextXCord = startXCord;
+
+            char midXCord = xCordText.charAt(0);
+
+            String midCord = "";   
+
+            switch (gameStage) 
+            {
+                // <editor-fold>
+                case 1:
+                    i = 3;
+                    if (orientation == 2)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord++;
+                            midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    else if (orientation == 1)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord = yCordToInt(midXCord);
+                            nextXCord--;
+                            midXCord = yCordToChar(nextXCord);
+                            midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    clearAndSetText();
+                    break;
+                case 2:
+                    i = 2;
+                    if (orientation == 2)
+                    {
+
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord++;
+                            midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    else if (orientation == 1)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord = yCordToInt(midXCord);
+                            nextXCord--;
+                            midXCord = yCordToChar(nextXCord);
+                            midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    clearAndSetText();
+                    break;
+                case 3:
+                    i = 1;
+                    if (orientation == 2)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord++;
+                            midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    else if (orientation == 1)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord = yCordToInt(midXCord);
+                            nextXCord--;
+                            midXCord = yCordToChar(nextXCord);
+                            midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    clearAndSetText();
+                    break;
+                case 4:
+                    i = 1;
+                    if (orientation == 2)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord++;
+                            midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    else if (orientation == 1)
+                    {
+                        identifyGrid(xCordText);
+
+                        while (i > 0)
+                        {
+                            nextXCord = yCordToInt(midXCord);
+                            nextXCord--;
+                            midXCord = yCordToChar(nextXCord);
+                            midCord = Character.toString(midXCord) + String.valueOf(startXCord);
+                            identifyGrid(midCord);
+                            i--;
+                        }
+
+                        identifyGrid(yCordText);
+                    }
+                    clearAndSetText();
+                    break;
+                case 5:
+                    if (orientation == 2)
+                    {
+                        identifyGrid(xCordText);
+                        identifyGrid(yCordText);
+
+                    }
+                    else if (orientation == 1)
+                    {
+                        identifyGrid(xCordText);
+                        identifyGrid(yCordText);
+                    }
+                    clearAndSetText();
+                    break;
+                // </editor-fold>
+            }
+        }
+        else if (gameStage == 6)
+        {
+            String equation = "";
+            
+            while (xCordOne == xCordTwo)
+            {
+                xCordOne = (int)(Math.random()) - 10;
+                xCordOne = (int)(Math.random()) - 10;
+            }
+            while (yCordOne == yCordTwo)
+            {
+                yCordOne = (int)(Math.random()) - 10;
+                yCordOne = (int)(Math.random()) - 10;
+            }
+            
+        if (gameStage < 6)
+        {
             // <editor-fold>
             
             String xCordText = xCordField.getText();
@@ -2068,8 +2295,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
             }
             
             // </editor-fold>
+
         }
-        
+
         else if (gameStage == 6)
         {
             if (firstRun == true)
@@ -2110,8 +2338,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     }
 
                     Gradient = (yCordTwo - yCordOne) / (xCordTwo-xCordOne);
-                    yIntercept = yCordOne - (Gradient * xCordOne);
-                    xIntercept = (yIntercept * -1) / Gradient;
+                    yIntercept = (yCordOne - (Gradient * xCordOne));
+                    xIntercept = ((yIntercept * -1) / Gradient);
                     equation = "y = " + String.valueOf(Gradient) + "x + " + yIntercept;
 
                     questionType = (int) (Math.random() * 4) + 1;
