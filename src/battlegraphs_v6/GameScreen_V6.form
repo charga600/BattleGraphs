@@ -3337,17 +3337,15 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="75" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="xCordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="yCordLabel" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="gradient" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="yCordLabel" min="-2" max="-2" attributes="0"/>
+                              <Component id="xCordLabel" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="yCordField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="xCordField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="gradField" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="xCordField" max="32767" attributes="0"/>
+                              <Component id="yCordField" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="confirmButton" min="-2" max="-2" attributes="0"/>
@@ -3357,7 +3355,7 @@
                       <Component id="thirdLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="fourthLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="fifthLine" alignment="0" max="32767" attributes="0"/>
-                      <Component id="sixthLine" alignment="0" max="32767" attributes="0"/>
+                      <Component id="sixthLine" alignment="0" pref="303" max="32767" attributes="0"/>
                       <Component id="seventhLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="eigthLine" alignment="0" max="32767" attributes="0"/>
                       <Component id="ninthLine" alignment="0" max="32767" attributes="0"/>
@@ -3389,7 +3387,11 @@
                   <Component id="ninthLine" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="confirmButton" min="-2" pref="75" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="xCordField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="xCordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -3399,23 +3401,15 @@
                               <Component id="yCordField" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="yCordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="gradField" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="gradient" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="confirmButton" min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JTextField" name="yCordField">
-        </Component>
-        <Component class="javax.swing.JTextField" name="gradField">
         </Component>
         <Component class="javax.swing.JTextField" name="xCordField">
           <Events>
@@ -3427,7 +3421,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="First Coordinate - "/>
+            <Property name="text" type="java.lang.String" value="Start Coordinate - "/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
@@ -3436,16 +3430,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="20" green="dc" red="d6" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Second Coordinate - "/>
-            <Property name="toolTipText" type="java.lang.String" value=""/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="gradient">
-          <Properties>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="20" green="dc" red="d6" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" -"/>
+            <Property name="text" type="java.lang.String" value="End Coordinate - "/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>

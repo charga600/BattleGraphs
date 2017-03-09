@@ -14,6 +14,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int DDIcons = 2;
     int arrayTracker = 0;
     int AIShips = 17; // AI ships remaining
+    int playerShips = 0;
     int xCordOne = 0;
     int yCordOne = 0;
     int xCordTwo = 0;
@@ -27,6 +28,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
     String[] shipCords = new String[17];
     String equation = "";
     String answer = "";
+    
+    boolean firstRun = true;
     
     public GameScreen_V6() 
     {
@@ -161,11 +164,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
         col9 = new javax.swing.JLabel();
         infoDisplayArea = new javax.swing.JPanel();
         yCordField = new javax.swing.JTextField();
-        gradField = new javax.swing.JTextField();
         xCordField = new javax.swing.JTextField();
         xCordLabel = new javax.swing.JLabel();
         yCordLabel = new javax.swing.JLabel();
-        gradient = new javax.swing.JLabel();
         firstLine = new javax.swing.JLabel();
         confirmButton = new javax.swing.JButton();
         secondLine = new javax.swing.JLabel();
@@ -1720,16 +1721,12 @@ public class GameScreen_V6 extends javax.swing.JPanel
         });
 
         xCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        xCordLabel.setText("First Coordinate - ");
+        xCordLabel.setText("Start Coordinate - ");
         xCordLabel.setToolTipText("");
 
         yCordLabel.setForeground(new java.awt.Color(214, 220, 32));
-        yCordLabel.setText("Second Coordinate - ");
+        yCordLabel.setText("End Coordinate - ");
         yCordLabel.setToolTipText("");
-
-        gradient.setForeground(new java.awt.Color(214, 220, 32));
-        gradient.setText(" -");
-        gradient.setToolTipText("");
 
         firstLine.setForeground(new java.awt.Color(214, 220, 32));
         firstLine.setText("Before we begin, you need to deploy your ships");
@@ -1775,16 +1772,14 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addContainerGap()
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoDisplayAreaLayout.createSequentialGroup()
-                        .addGap(0, 75, Short.MAX_VALUE)
-                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(xCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(yCordLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(gradient, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(14, 14, 14)
+                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(yCordLabel)
+                            .addComponent(xCordLabel))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(yCordField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(xCordField, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(gradField, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(xCordField)
+                            .addComponent(yCordField))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confirmButton))
                     .addComponent(firstLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1792,7 +1787,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     .addComponent(thirdLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fourthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(fifthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(sixthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(sixthLine, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
                     .addComponent(seventhLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(eigthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ninthLine, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1821,7 +1816,10 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 .addComponent(ninthLine)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(infoDisplayAreaLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoDisplayAreaLayout.createSequentialGroup()
+                        .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoDisplayAreaLayout.createSequentialGroup()
                         .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(xCordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(xCordLabel))
@@ -1829,12 +1827,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                         .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(yCordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(yCordLabel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(infoDisplayAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(gradField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gradient)))
-                    .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                        .addGap(24, 24, 24))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -1859,9 +1852,11 @@ public class GameScreen_V6 extends javax.swing.JPanel
     }//GEN-LAST:event_xCordFieldActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        
+
         if (gameStage < 6)
         {
+            // <editor-fold>
+            
             String xCordText = xCordField.getText();
             String yCordText = yCordField.getText();
             String xCordValue = xCordText.substring(1);
@@ -2071,15 +2066,37 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     break;
                 // </editor-fold>
             }
+            
+            // </editor-fold>
         }
+        
         else if (gameStage == 6)
         {
+            if (firstRun == true)
+            {
+                xCordField.setText("");
+                answer = "";
+                firstLine.setText("");
+                secondLine.setText("");
+                thirdLine.setText("");
+                fourthLine.setText("");
+                fifthLine.setText("");
+                sixthLine.setText("");
+                seventhLine.setText("");
+                eigthLine.setText("");
+                ninthLine.setText("");
+                firstRun = false;
+            }
+            
+            answer = xCordLabel.getText();
+            
             if (answer.equals(""))
             {
                 if (AIShips > 0)
                 {
-                    gradField.setText("Answer - ");
-
+                    xCordLabel.setText("Answer - ");
+                    yCordLabel.setText("- ");
+                    
                     while (xCordOne == xCordTwo)
                     {
                         xCordOne = (int)(Math.random() * 21) - 10;
@@ -2098,7 +2115,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     equation = "y = " + String.valueOf(Gradient) + "x + " + yIntercept;
 
                     questionType = (int) (Math.random() * 4) + 1;
-
+                    
+                    // <editor-fold>
+                    
                     switch (questionType)
                     {
                         case 1:
@@ -2133,11 +2152,29 @@ public class GameScreen_V6 extends javax.swing.JPanel
                             answer = equation;
                             break;
                     }
+                    
+                    // </editor-fold>
                 }
             }
-            else if (gradField.equals(answer))
+            else if (xCordLabel.equals(answer))
             {
+                AIShips--;
                 
+                if (AIShips > 0)
+                {
+                    firstLine.setText("Correct! Hostile ship sunk");
+                    secondLine.setText("The enemy now has " + AIShips + " remaining");
+                    thirdLine.setText("Click confirm to continue");
+                    xCordField.setText("");
+                    answer = "";
+                }
+            }
+            else 
+            {
+                firstLine.setText("Incorrect! We missed the target");
+                secondLine.setText("Click confirm to continue"); 
+                xCordField.setText("");
+                answer = "";
             }
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
@@ -2267,8 +2304,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
     private javax.swing.JLabel firstLine;
     private javax.swing.JLabel fourthLine;
     private javax.swing.JLabel gLine;
-    private javax.swing.JTextField gradField;
-    private javax.swing.JLabel gradient;
     private javax.swing.JPanel grid;
     private javax.swing.JPanel gridDisplayArea;
     private javax.swing.JLabel hLine;
@@ -2495,6 +2530,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 break;
             // </editosr-fold>
         }
+        
+        recordGrid(inputCord);
     }
     
     public String iconIdentify()
@@ -2819,14 +2856,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
         xCordField.setText("");
         yCordField.setText("");
         
-        if (gameStage == 1)
-        {
-            gameStage++;
-        }
-        
         switch(gameStage)
         {
-            case 2:
+            case 1:
                 firstLine.setText("Good!");
                 secondLine.setText("Now to place your Battleship");
                 thirdLine.setText("This is a 4 tile long ship");
@@ -2838,7 +2870,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 ninthLine.setText("");
                 gameStage++;
                 break;
-            case 3:
+            case 2:
                 firstLine.setText("Good!");
                 secondLine.setText("Now to place your Cruiser");
                 thirdLine.setText("This is a 3 tile long ship");
@@ -2847,7 +2879,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 sixthLine.setText("do will not overlap with any other ship");
                 gameStage++;
                 break;
-            case 4:
+            case 3:
                 firstLine.setText("Good!");
                 secondLine.setText("Now to place your Submarine");
                 thirdLine.setText("This is a 3 tile long ship");
@@ -2856,7 +2888,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 sixthLine.setText("do will not overlap with any other ship");
                 gameStage++;
                 break;
-            case 5:
+            case 4:
                 firstLine.setText("Good!");
                 secondLine.setText("Now to place your Destroyer");
                 thirdLine.setText("This is a 2 tile long ship");
@@ -2865,15 +2897,26 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 sixthLine.setText("do will not overlap with any other ship");
                 gameStage++;
                 break;
-            case 6:
-                firstLine.setText("Well...");
-                secondLine.setText("This is as far as I've gotten");
-                thirdLine.setText("Errmm...");
-                fourthLine.setText("*runs off*");
-                fifthLine.setText("");
-                sixthLine.setText("");
+            case 5:
+                firstLine.setText("That's all your ships placed");
+                secondLine.setText("Now it's time to being the game");
+                thirdLine.setText("The enemy has the same ships as you");
+                fourthLine.setText("You have to sink them all");
+                fifthLine.setText("Answer the questions correctly to score hits");
+                sixthLine.setText("The AI will make guesses every round");
+                seventhLine.setText("Ships you have lost will be marked");
+                eigthLine.setText("Click confirm to continue");
+                gameStage++;
                 break;
-                
+        }
+    }
+    
+    public void recordGrid(String gridRef)
+    {
+        if (playerShips < 17)
+        {
+            shipCords[playerShips] = gridRef;
+            playerShips++;
         }
     }
 }
