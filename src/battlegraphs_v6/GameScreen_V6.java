@@ -20,14 +20,17 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int xCordTwo = 0;
     int yCordTwo = 0;
     int questionType = 0; // 0 = null, 1 = find x intercept, 2 = find y intercept, 3 = find gradient, 4 = find equation
+    int deltaX = 0;
+    int deltaY = 0;
     
-    float Gradient = 0;
+    float gradient = 0;
     float yIntercept = 0;
     float xIntercept = 0;
     
     String[] shipCords = new String[17];
     String equation = "";
     String answer = "";
+    String userAnswer = "";
     
     boolean firstRun = true;
     
@@ -1855,6 +1858,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
 
         if (gameStage < 6)
         {
+            // <editor-fold>
+            
             String xCordText = xCordField.getText();
             String yCordText = yCordField.getText();
             String xCordValue = xCordText.substring(1);
@@ -2064,346 +2069,126 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     break;
                 // </editor-fold>
             }
+            
+            // </editor-fold>
         }
         else if (gameStage == 6)
         {
-            equation = "";
-            
-            while (xCordOne == xCordTwo)
+            while (xCordOne == yCordOne)
             {
-                xCordOne = (int)(Math.random()) - 10;
-                xCordOne = (int)(Math.random()) - 10;
+                xCordOne = (int)(Math.random() * 21) - 10;
+                yCordOne = (int)(Math.random() * 21) - 10;
             }
-            while (yCordOne == yCordTwo)
+            while (xCordTwo == yCordTwo)
             {
-                yCordOne = (int)(Math.random()) - 10;
-                yCordOne = (int)(Math.random()) - 10;
+                xCordTwo = (int)(Math.random() * 21) - 10;
+                yCordTwo = (int)(Math.random() * 21) - 10;
             }
-            
-            if (gameStage < 6)
+
+            if (firstRun == true)
             {
-                // <editor-fold>
+                xCordField.setText("");
+                xCordLabel.setText("Answer - ");
+                yCordLabel.setText("- ");
+                clearLines();
+                firstRun = false;
+            }
 
-                String xCordText = xCordField.getText();
-                String yCordText = yCordField.getText();
-                String xCordValue = xCordText.substring(1);
-                String yCordValue = yCordText.substring(1);
-                String xTenTest = xCordText.substring(2);
-                String yTenTest = yCordText.substring(2);
+            userAnswer = xCordLabel.getText();
 
-                int startXCord = Integer.parseInt(xCordValue);
-                int endXCord = Integer.parseInt(yCordValue);
-
-                if (xTenTest != null)
+            if (answer.equals(""))
+            {
+                if (AIShips > 0)
                 {
-                    xCordValue = "10";
-                }
+                    clearLines();
+                    
+                    deltaX = xCordTwo-xCordOne;
+                    deltaY = yCordTwo - yCordOne;
+                    if (deltaX == 0)
+                    {
+                        deltaX++;
+                    }
+                    gradient = (float) deltaY / deltaX;
+                    gradient = (float)((int)(gradient * 1000f )) / 1000f;
+                    yIntercept = (yCordOne - (gradient * xCordOne));
+                    xIntercept = ((yIntercept * -1) / gradient);
+                    equation = "y = " + String.valueOf(gradient) + "x + " + yIntercept;
 
-                if (yTenTest != null)
-                {
-                    yCordValue = "10";
-                }
+                    questionType = (int) (Math.random() * 4) + 1;
 
-                switch (gameStage)
-                {
-                    case 1: masterRange = 4;
-                        break;
-                    case 2: masterRange = 3;
-                        break;
-                    case 3: masterRange = 2;
-                        break;
-                    case 4: masterRange = 2;
-                        break;
-                    case 5: masterRange = 1;
-                        break;
-                }
-
-                int X1subX2 = startXCord - endXCord;
-                int X2subX1 = endXCord - startXCord;
-
-                if(X1subX2 == masterRange || X2subX1 == masterRange)
-                {
-                    orientation = 2;
-                }
-                else
-                {
-                    orientation = 1;
-                }
-
-                int i = 0;
-                int nextXCord = startXCord;
-
-                char midXCord = xCordText.charAt(0);
-
-                String midCord = "";   
-
-                switch (gameStage) 
-                {
                     // <editor-fold>
-                    case 1:
-                        i = 3;
-                        if (orientation == 2)
-                        {
-                            identifyGrid(xCordText);
 
-                            while (i > 0)
-                            {
-                                nextXCord++;
-                                midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
+                    switch (questionType)
+                    {
+                        case 1:
+                            firstLine.setText("");
+                            firstLine.setText("given the equation of the line AB");
+                            secondLine.setText(equation);
+                            thirdLine.setText("find the x intercept of AB");
+                            answer = Float.toString(xIntercept);
+                            break;
+                        case 2:
+                            firstLine.setText("Given the gradient of the line AB");
+                            secondLine.setText(Float.toString(gradient));
+                            thirdLine.setText("and the point C");
+                            fourthLine.setText(Float.toString(xCordOne) + ", " + Integer.toString(yCordOne));
+                            fifthLine.setText("find the y intercept of AB");
+                            answer = Float.toString(yIntercept);
+                            break;
+                        case 3:
+                            firstLine.setText("Given that the Line AB passes through");
+                            secondLine.setText("Point A : " +  Integer.toString(xCordOne) + ", " + Integer.toString(yCordOne));
+                            thirdLine.setText("Point B : " +  Integer.toString(xCordTwo) + ", " + Integer.toString(yCordTwo));
+                            fourthLine.setText("Find the gradient of AB");
+                            fifthLine.setText("Cut the gradient to 3 decimal places");
+                            answer = Float.toString(gradient);
+                            break;
+                        case 4:
+                            firstLine.setText("Givent that the line AB passes through");
+                            secondLine.setText("Point A : " +  Integer.toString(xCordOne) + ", " + Integer.toString(yCordOne));
+                            thirdLine.setText("And has a gradient of");
+                            fourthLine.setText(Float.toString(gradient));
+                            fifthLine.setText("Find the equation of AB in the form");
+                            sixthLine.setText("Y = MX + C");
+                            seventhLine.setText("Cut the gradient to 3 decimal places");
+                            answer = equation;
+                            break;
+                    }
 
-                            identifyGrid(yCordText);
-                        }
-                        else if (orientation == 1)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord = yCordToInt(midXCord);
-                                nextXCord--;
-                                midXCord = yCordToChar(nextXCord);
-                                midCord = Character.toString(midXCord) + String.valueOf(startXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        clearAndSetText();
-                        break;
-                    case 2:
-                        i = 2;
-                        if (orientation == 2)
-                        {
-
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord++;
-                                midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        else if (orientation == 1)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord = yCordToInt(midXCord);
-                                nextXCord--;
-                                midXCord = yCordToChar(nextXCord);
-                                midCord = Character.toString(midXCord) + String.valueOf(startXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        clearAndSetText();
-                        break;
-                    case 3:
-                        i = 1;
-                        if (orientation == 2)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord++;
-                                midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        else if (orientation == 1)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord = yCordToInt(midXCord);
-                                nextXCord--;
-                                midXCord = yCordToChar(nextXCord);
-                                midCord = Character.toString(midXCord) + String.valueOf(startXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        clearAndSetText();
-                        break;
-                    case 4:
-                        i = 1;
-                        if (orientation == 2)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord++;
-                                midCord = xCordText.charAt(0) + String.valueOf(nextXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        else if (orientation == 1)
-                        {
-                            identifyGrid(xCordText);
-
-                            while (i > 0)
-                            {
-                                nextXCord = yCordToInt(midXCord);
-                                nextXCord--;
-                                midXCord = yCordToChar(nextXCord);
-                                midCord = Character.toString(midXCord) + String.valueOf(startXCord);
-                                identifyGrid(midCord);
-                                i--;
-                            }
-
-                            identifyGrid(yCordText);
-                        }
-                        clearAndSetText();
-                        break;
-                    case 5:
-                        if (orientation == 2)
-                        {
-                            identifyGrid(xCordText);
-                            identifyGrid(yCordText);
-
-                        }
-                        else if (orientation == 1)
-                        {
-                            identifyGrid(xCordText);
-                            identifyGrid(yCordText);
-                        }
-                        clearAndSetText();
-                        break;
                     // </editor-fold>
                 }
-
-                // </editor-fold>
-
             }
-
-            else if (gameStage == 6)
+            else if (userAnswer.equals(answer))
             {
-                if (firstRun == true)
+                AIShips--;
+
+                if (AIShips > 0)
                 {
+                    clearLines();
+                    firstLine.setText("Correct! Hostile ship sunk");
+                    secondLine.setText("The enemy now has " + AIShips + " remaining");
+                    thirdLine.setText("Click confirm to continue");
                     xCordField.setText("");
-                    answer = "";
-                    firstLine.setText("");
-                    secondLine.setText("");
-                    thirdLine.setText("");
-                    fourthLine.setText("");
-                    fifthLine.setText("");
-                    sixthLine.setText("");
-                    seventhLine.setText("");
-                    eigthLine.setText("");
-                    ninthLine.setText("");
-                    firstRun = false;
-                }
-
-                answer = xCordLabel.getText();
-
-                if (answer.equals(""))
-                {
-                    if (AIShips > 0)
-                    {
-                        xCordLabel.setText("Answer - ");
-                        yCordLabel.setText("- ");
-
-                        while (xCordOne == xCordTwo)
-                        {
-                            xCordOne = (int)(Math.random() * 21) - 10;
-                            xCordTwo = (int)(Math.random() * 21) - 10;
-                        }
-
-                        while (yCordOne == yCordTwo)
-                        {
-                            yCordOne = (int)(Math.random() * 21) - 10;
-                            yCordTwo = (int)(Math.random() * 21) - 10;
-                        }
-
-                        Gradient = (yCordTwo - yCordOne) / (xCordTwo-xCordOne);
-                        yIntercept = (yCordOne - (Gradient * xCordOne));
-                        xIntercept = ((yIntercept * -1) / Gradient);
-                        equation = "y = " + String.valueOf(Gradient) + "x + " + yIntercept;
-
-                        questionType = (int) (Math.random() * 4) + 1;
-
-                        // <editor-fold>
-
-                        switch (questionType)
-                        {
-                            case 1:
-                                firstLine.setText("");
-                                firstLine.setText("given the equation of the line AB");
-                                secondLine.setText(equation);
-                                thirdLine.setText("find the x intercept of AB");
-                                answer = Float.toString(xIntercept);
-                                break;
-                            case 2:
-                                firstLine.setText("Given the gradient of the line AB");
-                                secondLine.setText(Float.toString(Gradient));
-                                thirdLine.setText("and the point C");
-                                fourthLine.setText(Float.toString(xCordOne) + ", " + Integer.toString(yCordOne));
-                                fifthLine.setText("find the y intercept of AB");
-                                answer = Float.toString(yIntercept);
-                                break;
-                            case 3:
-                                firstLine.setText("Given that the Line AB passes through");
-                                secondLine.setText("Point A : " +  Integer.toString(xCordOne) + ", " + Integer.toString(yCordOne));
-                                thirdLine.setText("Point B : " +  Integer.toString(xCordTwo) + ", " + Integer.toString(yCordTwo));
-                                fourthLine.setText("Find the gradient of AB");
-                                answer = Float.toString(Gradient);
-                                break;
-                            case 4:
-                                firstLine.setText("Givent that the line AB passes through");
-                                secondLine.setText("Point A : " +  Integer.toString(xCordOne) + ", " + Integer.toString(yCordOne));
-                                thirdLine.setText("And has a gradient of");
-                                fourthLine.setText(Float.toString(Gradient));
-                                fifthLine.setText("Find the equation of AB in the form");
-                                sixthLine.setText("Y = MX + C");
-                                answer = equation;
-                                break;
-                        }
-
-                        // </editor-fold>
-                    }
-                }
-                else if (xCordLabel.equals(answer))
-                {
-                    AIShips--;
-
-                    if (AIShips > 0)
-                    {
-                        firstLine.setText("Correct! Hostile ship sunk");
-                        secondLine.setText("The enemy now has " + AIShips + " remaining");
-                        thirdLine.setText("Click confirm to continue");
-                        xCordField.setText("");
-                        answer = "";
-                    }
-                }
-                else 
-                {
-                    firstLine.setText("Incorrect! We missed the target");
-                    secondLine.setText("Click confirm to continue"); 
-                    xCordField.setText("");
+                    userAnswer = "";
                     answer = "";
                 }
+                else if (AIShips == 0)
+                {
+                    clearLines();
+                    firstLine.setText("Congratulations, you have won!");
+                    xCordField.setText("");
+                    userAnswer = "";
+                    answer = ""; 
+                }
+            }
+            else 
+            {
+                clearLines();
+                firstLine.setText("Incorrect! We missed the target");
+                secondLine.setText("Click confirm to continue"); 
+                xCordField.setText("");
+                userAnswer = "";
+                answer = "";
             }
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
@@ -3147,5 +2932,18 @@ public class GameScreen_V6 extends javax.swing.JPanel
             shipCords[playerShips] = gridRef;
             playerShips++;
         }
+    }
+    
+    public void clearLines()
+    {
+        firstLine.setText("");
+        secondLine.setText("");
+        thirdLine.setText("");
+        fourthLine.setText("");
+        fifthLine.setText("");
+        sixthLine.setText("");
+        seventhLine.setText("");
+        eigthLine.setText("");
+        ninthLine.setText("");
     }
 }
