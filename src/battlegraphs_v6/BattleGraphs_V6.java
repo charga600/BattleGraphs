@@ -269,6 +269,7 @@ public class BattleGraphs_V6
         twoPlayer.setEnabled(false);
         moderate.setEnabled(false);
         hard.setEnabled(false);
+        help.setEnabled(false);
         confirm.setEnabled(false);
         
         buttonPanel.add(singlePlayer);

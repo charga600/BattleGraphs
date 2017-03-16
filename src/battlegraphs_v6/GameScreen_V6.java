@@ -3,7 +3,7 @@ package battlegraphs_v6;
 
 public class GameScreen_V6 extends javax.swing.JPanel 
 {
-    int gameStage = 1; // 1 = place CV, 2 = place BB, 3 = place CR, 4 = place SB, 5 = place DD, 6 = game is in play, 7 = user wins, 8 = AI wins, 9 = game over
+    int gameStage = 6; // 1 = place CV, 2 = place BB, 3 = place CR, 4 = place SB, 5 = place DD, 6 = game is in play, 7 = user wins, 8 = AI wins, 9 = game over
     int masterRange = -1;
     int orientation = 0; // 0 = null, 1 = verticle, 2 = horizontal 
     int SXGreaterEX = 0; // 0 = null, 1 = startX is greater than endX, 2 = endX is greater than startX
@@ -13,7 +13,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int SBIcons = 3;
     int DDIcons = 2;
     int arrayTracker = 0;
-    int AIShips = 17; // AI ships remaining
+    int AIShips = 2; // AI ships remaining
     int playerShips = 0;
     int xCordOne = 0;
     int yCordOne = 0;
@@ -27,6 +27,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     float yIntercept = 0;
     float xIntercept = 0;
     
+    String[] allCords = new String [100];
     String[] shipCords = new String[17];
     String equation = "";
     String answer = "";
@@ -1855,7 +1856,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     }//GEN-LAST:event_xCordFieldActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-
+        
         if (gameStage < 6)
         {
             // <editor-fold>
@@ -2074,6 +2075,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
         }
         else if (gameStage == 6)
         {
+            AIGuessMaker();
+            
             while (xCordOne == yCordOne)
             {
                 xCordOne = (int)(Math.random() * 21) - 10;
@@ -2094,15 +2097,16 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 firstRun = false;
             }
 
-            userAnswer = xCordLabel.getText();
-
+            userAnswer = xCordField.getText();
+            userAnswer.trim();
+            
             if (answer.equals(""))
             {
                 if (AIShips > 0)
                 {
                     clearLines();
                     
-                    deltaX = xCordTwo-xCordOne;
+                    deltaX = xCordTwo - xCordOne;
                     deltaY = yCordTwo - yCordOne;
                     if (deltaX == 0)
                     {
@@ -2121,7 +2125,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     switch (questionType)
                     {
                         case 1:
-                            firstLine.setText("");
                             firstLine.setText("given the equation of the line AB");
                             secondLine.setText(equation);
                             thirdLine.setText("find the x intercept of AB");
@@ -2154,11 +2157,14 @@ public class GameScreen_V6 extends javax.swing.JPanel
                             answer = equation;
                             break;
                     }
-
+                    
+                    answer.trim();
+                    System.out.println(answer);
+                    
                     // </editor-fold>
                 }
             }
-            else if (userAnswer.equals(answer))
+            else if (answer.equals(userAnswer))
             {
                 AIShips--;
 
@@ -2946,4 +2952,40 @@ public class GameScreen_V6 extends javax.swing.JPanel
         eigthLine.setText("");
         ninthLine.setText("");
     }
+    
+    public void AIGuessMaker()
+    {
+        
+    }
+    
+    public void cordFiller()
+    {
+        
+        int i = 10; //count the letters
+        int j = 0; // counting the numbers
+        int k = 0; // countdown of times run
+        
+        char letter = '-';
+        
+        String cord = "";
+        
+        while (k < 100)
+        {
+            while ( j < 10)
+            {
+                letter = yCordToChar(i);
+                cord = letter + String.valueOf(j);
+                allCords[k] = cord;
+                k--;
+                j++;
+            }
+            
+            if (j == 10)
+            {
+                j = 0;
+                i--;
+            }
+        }
+    }
+    
 }
