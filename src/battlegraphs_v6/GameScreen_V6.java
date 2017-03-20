@@ -1,9 +1,11 @@
 
 package battlegraphs_v6;
 
+import java.util.Arrays;
+
 public class GameScreen_V6 extends javax.swing.JPanel 
 {
-    int gameStage = 6; // 1 = place CV, 2 = place BB, 3 = place CR, 4 = place SB, 5 = place DD, 6 = game is in play, 7 = user wins, 8 = AI wins, 9 = game over
+    int gameStage = 1; // 1 = place CV, 2 = place BB, 3 = place CR, 4 = place SB, 5 = place DD, 6 = game is in play, 7 = user wins, 8 = AI wins, 9 = game over
     int masterRange = -1;
     int orientation = 0; // 0 = null, 1 = verticle, 2 = horizontal 
     int SXGreaterEX = 0; // 0 = null, 1 = startX is greater than endX, 2 = endX is greater than startX
@@ -22,6 +24,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     int questionType = 0; // 0 = null, 1 = find x intercept, 2 = find y intercept, 3 = find gradient, 4 = find equation
     int deltaX = 0;
     int deltaY = 0;
+    int direction = 0; // 0 = null, 1 = up, 2 = down, 3 = left, 4 = right
     
     float gradient = 0;
     float yIntercept = 0;
@@ -29,6 +32,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     
     String[] allCords = new String [100];
     String[] shipCords = new String[17];
+    String lastHit = "";
     String equation = "";
     String answer = "";
     String userAnswer = "";
@@ -1856,7 +1860,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     }//GEN-LAST:event_xCordFieldActionPerformed
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
-        
+         
         if (gameStage < 6)
         {
             // <editor-fold>
@@ -2075,8 +2079,13 @@ public class GameScreen_V6 extends javax.swing.JPanel
         }
         else if (gameStage == 6)
         {
-            AIGuessMaker();
+            AIGuesser();
             
+            xCordOne = 0;
+            yCordOne = 0;
+            xCordTwo = 0;
+            yCordTwo = 0;
+                    
             while (xCordOne == yCordOne)
             {
                 xCordOne = (int)(Math.random() * 21) - 10;
@@ -2094,6 +2103,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 xCordLabel.setText("Answer - ");
                 yCordLabel.setText("- ");
                 clearLines();
+                cordFiller();
                 firstRun = false;
             }
 
@@ -2106,16 +2116,30 @@ public class GameScreen_V6 extends javax.swing.JPanel
                 {
                     clearLines();
                     
-                    deltaX = xCordTwo - xCordOne;
                     deltaY = yCordTwo - yCordOne;
+                    deltaX = xCordTwo - xCordOne;
                     if (deltaX == 0)
                     {
                         deltaX++;
                     }
                     gradient = (float) deltaY / deltaX;
                     gradient = (float)((int)(gradient * 1000f )) / 1000f;
-                    yIntercept = (yCordOne - (gradient * xCordOne));
-                    xIntercept = ((yIntercept * -1) / gradient);
+                    if (gradient == 0)
+                    {
+                        gradient++;
+                        yIntercept = (yCordOne - (gradient * xCordOne));
+                        yIntercept = (float)((int)(yIntercept * 1000f )) / 1000f;
+                        xIntercept = ((yIntercept * -1) / gradient);
+                        xIntercept = (float)((int)(xIntercept * 1000f )) / 1000f;
+                        gradient--;
+                    }
+                    else 
+                    {
+                        yIntercept = (yCordOne - (gradient * xCordOne));
+                        yIntercept = (float)((int)(yIntercept * 1000f )) / 1000f;
+                        xIntercept = ((yIntercept * -1) / gradient);
+                        xIntercept = (float)((int)(xIntercept * 1000f )) / 1000f;
+                    }
                     equation = "y = " + String.valueOf(gradient) + "x + " + yIntercept;
 
                     questionType = (int) (Math.random() * 4) + 1;
@@ -2159,7 +2183,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     }
                     
                     answer.trim();
-                    System.out.println(answer);
                     
                     // </editor-fold>
                 }
@@ -2199,6 +2222,8 @@ public class GameScreen_V6 extends javax.swing.JPanel
         }
     }//GEN-LAST:event_confirmButtonActionPerformed
     
+    
+    // GUI declarations
     // <editor-fold>
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2782,6 +2807,9 @@ public class GameScreen_V6 extends javax.swing.JPanel
                     // </editor-fold>
                 }
             break;
+            case 6:
+                iconIdentity = "/battlegraphs_v6/battlegraphs_v6_icons/empty.png";
+                break;
                 
         }
         
@@ -2953,8 +2981,45 @@ public class GameScreen_V6 extends javax.swing.JPanel
         ninthLine.setText("");
     }
     
-    public void AIGuessMaker()
+    public void AIGuesser()
     {
+        if (lastHit.equals(""))
+        {
+            int i = 0;
+            int j = 0;
+            int arrayIndex = 100;
+            
+            char letter = '-';
+            
+            String guess = "";
+            
+            i = (int) (Math.random() * 10) + 1;
+            j = (int) (Math.random() * 10) + 1;
+            
+            letter = yCordToChar(i);
+            
+            guess = letter + String.valueOf(j);
+            
+            guess = "A1";
+            
+            for (int k = 0; k < 100; k++)
+            {
+                if (guess.equals(allCords[k]))
+                {
+                    arrayIndex = k;
+                    allCords[k] = "";
+                }
+            }
+            for (int l = 0; l < 17; l++)
+            {
+                if (guess.equals(shipCords[l]))
+                {
+                    shipCords[l] = "";
+                    lastHit = guess;
+                    identifyGrid(guess);
+                }
+            }
+        }
         
     }
     
@@ -2962,7 +3027,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
     {
         
         int i = 10; //count the letters
-        int j = 0; // counting the numbers
+        int j = 1; // counting the numbers
         int k = 0; // countdown of times run
         
         char letter = '-';
@@ -2971,18 +3036,18 @@ public class GameScreen_V6 extends javax.swing.JPanel
         
         while (k < 100)
         {
-            while ( j < 10)
+            while ( j < 11)
             {
                 letter = yCordToChar(i);
                 cord = letter + String.valueOf(j);
                 allCords[k] = cord;
-                k--;
+                k++;
                 j++;
             }
             
-            if (j == 10)
+            if (j == 11)
             {
-                j = 0;
+                j = 1;
                 i--;
             }
         }
