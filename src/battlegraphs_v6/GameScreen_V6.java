@@ -1,14 +1,11 @@
 
 package battlegraphs_v6;
 
-import java.util.Arrays;
-
 public class GameScreen_V6 extends javax.swing.JPanel 
 {
     int gameStage = 1; // 1 = place CV, 2 = place BB, 3 = place CR, 4 = place SB, 5 = place DD, 6 = game is in play, 7 = user wins, 8 = AI wins, 9 = game over
     int masterRange = -1;
     int orientation = 0; // 0 = null, 1 = verticle, 2 = horizontal 
-    int SXGreaterEX = 0; // 0 = null, 1 = startX is greater than endX, 2 = endX is greater than startX
     int CVIcons = 5;
     int BBIcons = 4;
     int CRIcons = 3;
@@ -1874,7 +1871,7 @@ public class GameScreen_V6 extends javax.swing.JPanel
 
             int startXCord = Integer.parseInt(xCordValue);
             int endXCord = Integer.parseInt(yCordValue);
-
+            
             if (xTenTest != null)
             {
                 xCordValue = "10";
@@ -2079,7 +2076,20 @@ public class GameScreen_V6 extends javax.swing.JPanel
         }
         else if (gameStage == 6)
         {
-            AIGuesser();
+            if (firstRun == true)
+            {
+                xCordField.setText("");
+                xCordLabel.setText("Answer - ");
+                yCordLabel.setText("- ");
+                clearLines();
+                cordFiller();
+                firstRun = false;
+            }
+            
+            if (firstRun == false)
+            {
+                AIGuesser();
+            }
             
             xCordOne = 0;
             yCordOne = 0;
@@ -2095,16 +2105,6 @@ public class GameScreen_V6 extends javax.swing.JPanel
             {
                 xCordTwo = (int)(Math.random() * 21) - 10;
                 yCordTwo = (int)(Math.random() * 21) - 10;
-            }
-
-            if (firstRun == true)
-            {
-                xCordField.setText("");
-                xCordLabel.setText("Answer - ");
-                yCordLabel.setText("- ");
-                clearLines();
-                cordFiller();
-                firstRun = false;
             }
 
             userAnswer = xCordField.getText();
@@ -2983,44 +2983,136 @@ public class GameScreen_V6 extends javax.swing.JPanel
     
     public void AIGuesser()
     {
+        int i = 0;
+        int j = 0;
+        
+        String guess = "";
+        
+        char letter = '-';
+        
+        Boolean guessValid = false;
+        
         if (lastHit.equals(""))
         {
-            int i = 0;
-            int j = 0;
-            int arrayIndex = 100;
-            
-            char letter = '-';
-            
-            String guess = "";
-            
-            i = (int) (Math.random() * 10) + 1;
-            j = (int) (Math.random() * 10) + 1;
-            
-            letter = yCordToChar(i);
-            
-            guess = letter + String.valueOf(j);
-            
-            guess = "A1";
-            
-            for (int k = 0; k < 100; k++)
+            while (guessValid == false)
             {
-                if (guess.equals(allCords[k]))
-                {
-                    arrayIndex = k;
-                    allCords[k] = "";
-                }
+                i = (int) (Math.random() * 10) + 1;
+                j = (int) (Math.random() * 10) + 1;
+
+                letter = yCordToChar(i);
+                guess = letter + String.valueOf(j);
+                guessValid = guessValidation(guess);
+                direction = 1;
             }
-            for (int l = 0; l < 17; l++)
+        }
+        else if (lastHit != "")
+        {
+            String guessNumber = guess.substring(1);
+            String guessTenTest = guess.substring(2);
+
+            letter = guess.charAt(0);
+            j = Integer.parseInt(guessNumber);
+            
+            if (guessTenTest != null)
             {
-                if (guess.equals(shipCords[l]))
+                guessNumber = "10";
+            }
+            
+            i = yCordToInt(letter); 
+
+            while (guessValid == false)
+            {
+                switch(direction)
                 {
-                    shipCords[l] = "";
-                    lastHit = guess;
-                    identifyGrid(guess);
+                    case 1:
+                        i++;
+                        if (i > 10)
+                        {
+                            i--;
+                        }
+                        else 
+                        {
+                            letter = yCordToChar(i);
+                            guess = letter + String.valueOf(j);
+                            guessValid = guessValidation(guess);
+                        }
+                        direction++;
+                        break;
+                    
+                    case 2:
+                        i--;
+                        if (i < 1)
+                        {
+                            i++;
+                        }
+                        else 
+                        {
+                            letter = yCordToChar(i);
+                            guess = letter + String.valueOf(j);
+                            guessValid = guessValidation(guess);
+                        }
+                        direction++;
+                        break;
+                    
+                    case 3:
+                        j++;
+                        if (j > 10)
+                        {
+                            j--;
+                        }
+                        else 
+                        {
+                            letter = yCordToChar(i);
+                            guess = letter + String.valueOf(j);
+                            guessValid = guessValidation(guess);
+                        }
+                        direction++;
+                        break;
+                        
+                    case 4:
+                        j--;
+                        if (j < 1)
+                        {
+                            j++;
+                            lastHit = "";
+                        }
+                        else 
+                        {
+                            letter = yCordToChar(i);
+                            guess = letter + String.valueOf(j);
+                            guessValid = guessValidation(guess);
+                        }
+                        direction = 0;
+                        break;
                 }
             }
         }
+    }
+    
+    public boolean guessValidation(String guess)
+    {
+        boolean isGuessValid = false;
         
+        for (int k = 0; k < 100; k++)
+        {
+            if (guess.equals(allCords[k]))
+            {
+                allCords[k] = "";
+                isGuessValid = true;
+            }
+        }
+        for (int l = 0; l < 17; l++)
+        {
+            if (guess.equals(shipCords[l]))
+            {
+                shipCords[l] = "";
+                lastHit = guess;
+                identifyGrid(guess);
+                isGuessValid = true;
+            }
+        }
+        
+        return isGuessValid;
     }
     
     public void cordFiller()
